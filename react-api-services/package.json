@@ -6,6 +6,8 @@
     "axios": "^0.18.0",
     "axios-retry": "^3.1.2",
     "bootstrap": "^4.3.1",
+    "jest-styled-components": "^6.3.1",
+    "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-bootstrap-table": "^4.3.1",
@@ -16,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -26,5 +29,13 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "cypress": "^3.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "react-test-renderer": "^16.8.4",
+    "react-testing-library": "^6.0.0",
+    "styled-components": "^4.2.0"
+  }
 }

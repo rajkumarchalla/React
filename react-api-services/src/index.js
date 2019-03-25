@@ -3,9 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import Progress from './Progress'
+import styles from "./styles.css";
 ReactDOM.render(<App />, document.getElementById('root'));
-
+ReactDOM.render(<Progress data-testid="progress-display" title="GV" data-animated="true"  value="60" data-color="success"/>,document.getElementById('ProgressVL'));
+ReactDOM.render(<ExampleButton title="Button example Title" text="sample" btTitle="Ex Button"  onClick={() => 
+    { 
+    alert("Hello! Buton Action Performed"); }
+} className="center_position"/>, document.getElementById('div_five'))
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
