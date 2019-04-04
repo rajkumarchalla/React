@@ -2,7 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import { getuserData } from './APIUtils';
 import constant from './Constant'
-
+import styled from 'styled-components'
+// Create a Title component that'll render an <h1> tag with some styles
+const Title = styled.h1`
+  font-size: 1.0em;
+  text-align: center;
+  color: palevioletred;
+  width: 20%px;
+  opacity: 65;
+`;
+// Create a Wrapper component that'll render a <section> tag with some styles
+const Wrapper = styled.section`
+  padding: 2em;
+  background: rgb(20, 233, 162);
+`;
 class App extends Component {
   /**
    * 
@@ -86,7 +99,11 @@ class App extends Component {
         <div className="row">
           <div className="col-sm">
             <div >
+            <Wrapper>
+            <Title>
               <h1> Front-End-SDK TDD </h1>
+              </Title>
+              </Wrapper>
             </div>
             <br />
 

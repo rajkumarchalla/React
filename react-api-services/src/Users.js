@@ -27,7 +27,7 @@ export default class Users extends Component {
       })
       .catch(errorMessage => {
         alert(errorMessage)
-        console.log(errorMessage)
+       // console.log(errorMessage)
       });
   }
   render() {

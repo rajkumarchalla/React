@@ -1,42 +1,14 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-.test {
-  display: inline-block;
-  margin: 2em auto;
-  border: 2px solid #000;
-  font-size: 2em;
-}
-.buttonStyle {
-  width: 50%;
-  height: 30%;
-  border: 2px solid rgb(20, 233, 162);
-  color: rgb(18, 105, 206);
-  font-size: 24px;
-  position: relative;
-};
-.component-button {
+#component-button {
   display: inline-flex;
   width: 25%;
   flex: 1 0 auto;
 }
 
-.component-button.wide {
+#component-button.wide {
   width: 50%;
 }
 
-.component-button button {
+#component-button button {
   background-color: #E0E0E0;
   border: 0;
   font-size: 12px;
@@ -45,11 +17,11 @@ code {
   padding: 0;
 }
 
-.component-button:last-child button {
+#component-button:last-child button {
   margin-right: 0;
 }
 
-.component-button.orange button {
+#component-button.orange button {
   background-color: #F5923E;
   color: white;
 }

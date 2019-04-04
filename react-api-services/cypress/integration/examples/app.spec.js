@@ -1,23 +1,15 @@
+///<reference types="Cypress" />
+import React from 'react'
+import { Progress } from '../../../src/Progress';
 
-/// <reference types="Cypress" />
-
-context('Window', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:3000/')
+context('GetData', () => {
+describe('Button', () => {
+  it('should render', function() {
+    cy.visit('localhost:8000');
   })
-  it('cy.window() - get the global window object', () => {
-    // https://on.cypress.io/window
-    cy.window().should('have.property', 'top')
+  it('can be orange', () => {
+    cy.visit('localhost:8000');
+    cy.mount(<Progress />)
   })
-
-  it('cy.document() - get the document object', () => {
-    // https://on.cypress.io/document
-    cy.document().should('have.property', 'charset').and('eq', 'UTF-8')
-  })
-
-  it('cy.title() - get the title', () => {
-    // https://on.cypress.io/title
-    cy.title().should('include', ' Front-End-SDK TDD ')
-    cy.title().should('title', 'New User')
-  })
+ })
 })
