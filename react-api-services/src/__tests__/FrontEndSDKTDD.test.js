@@ -176,7 +176,7 @@ describe('TestCase#4 : Test Button click event', () => {
         expect(userFlavour).toHaveBeenCalled(); //to ensure that a mock function got called.
         console.log(userFlavour()); 
         drinkAll(userFlavour, 'orange');
-       //  expect(userFlavour).not.toHaveBeenCalled();
+       // expect(userFlavour).not.toHaveBeenCalled();
     });
 
 });
