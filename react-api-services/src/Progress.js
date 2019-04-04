@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import {toNumber} from "lodash";
 import { mapToCssModules, tagPropType } from "./utils";
-import styles from "./styles.css";
+//import styles from "./styles.css";
 
 const propTypes = {
   children: PropTypes.node,
@@ -99,7 +99,7 @@ const Progress = props => {
     <div className="container" onClick={onClick}>
       <div className="row">
         <div className="col-sm">
-          <span className={styles.ovlabel} style={{ color: lableColor} } data-testid="progress-displa">
+          <span className={styles.ovlabel} style={{ color: lableColor} } data-testid="progress-display">
             {title}
           </span>
         </div>

@@ -15,7 +15,7 @@ Array [
           className="col-sm"
         >
           <span
-            data-testid="progress-displa"
+            data-testid="progress-display"
             style={
               Object {
                 "color": undefined,
@@ -53,43 +53,64 @@ Array [
 ]
 `;
 
-exports[`TestCase#4 : Test Button click event it works 1`] = `
-<div
-  className="container"
->
-  <div
-    className="row"
-  >
-    <div
-      className="col-sm"
-    >
-      <span
-        className="default"
-        style={
-          Object {
-            "color": undefined,
-          }
-        }
-      >
-        <h1>
-           Button Test 
-        </h1>
-        <button>
-           
-           
-        </button>
-         
-        <br />
-        <button
-          className="btn btn-outline-primary btn-block btn-lg"
-          disabled={false}
-          type="button"
-        >
-           
-           
-        </button>
-      </span>
-    </div>
-  </div>
-</div>
+exports[`TestCase#6 : toHaveStyleRule  Jest Styled Components works with shallow rendering 1`] = `
+Array [
+  <StyledComponent
+    forwardedComponent={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-htpNat",
+          "isStatic": false,
+          "rules": Array [
+            "
+width: 50%;
+height: 30%;
+border: 2px solid rgb(20, 233, 162);
+color: rgb(18,105,206);
+font-size: 24px;
+position: relative;
+border: 0.05em solid ",
+            [Function],
+            ";
+cursor: ",
+            [Function],
+            ";
+opacity: ",
+            [Function],
+            ";
+",
+          ],
+        },
+        "displayName": "styled.button",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-htpNat",
+        "target": "button",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      }
+    }
+    forwardedRef={null}
+  />,
+]
+`;
+
+exports[`TestCase#6 : toHaveStyleRule  it applies default styles 1`] = `
+.c0 {
+  width: 50%;
+  height: 30%;
+  border: 2px solid rgb(20,233,162);
+  color: rgb(18,105,206);
+  font-size: 24px;
+  position: relative;
+  border: 0.05em solid black;
+  cursor: pointer;
+}
+
+<button
+  className="c0"
+/>
 `;

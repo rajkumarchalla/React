@@ -5,13 +5,15 @@ import { shallow, mount } from 'enzyme';
 import Progress from '../Progress'
 import App from '../App';
 import ExampleButton from '../ExampleButton';
-import {create} from 'react-test-renderer';
+import { create } from 'react-test-renderer';
 import 'jest-styled-components';
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
+import { render } from 'react-testing-library'
+import renderer from 'react-test-renderer'
 import Users from '../Users';
 
-/* FrontEndSDK TDD 
-* 
+/* FrontEndSDK TDD
+*
 * Jest API :- https://jestjs.io/docs/en/configuration
               The Jest API focusses more on the ability to define tests, make assertions, and create mocks.
 * describe: defines a test suite.
@@ -26,7 +28,7 @@ import Users from '../Users';
 * toBeCalled: checks if a mock function is called.
 *
 *----------------------
-* Enzyme :- It provides a mechanism to mount and traverse React.js component trees. 
+* Enzyme :- It provides a mechanism to mount and traverse React.js component trees.
           It will help us get access to its own properties and state as well as its children props in order to run our assertions.
           Ref: https://airbnb.io/enzyme/
 
@@ -134,13 +136,22 @@ describe("TestCase#3 :Progress Component Rendering tests", () => {
         console.log(ProgressComponent.prop('value'));
         expect(ProgressComponent.prop('value')).toEqual(20);
     });
+    it('TestCase#3 -9 : Edge testcase - Check the max value of progress', () => {
+        const props = {
+            max: '',
+            value: ''
+        },
+            ProgressComponent = mount(<Progress {...props} max={100} value={40} />);
+        console.log(ProgressComponent.prop('max'));
+        expect(ProgressComponent.prop('value')).toBeLessThanOrEqual(ProgressComponent.prop('max'));
+    });
 
 });
 describe('TestCase#4 : Test Button click event', () => {
 
     it('TestCase#4 -1 OnClick ()', () => {
-        // here rather than just testing the output we can create a mock function with jest.fn(). 
-        //use Mock jest.fn(), the behavior of a function that is called indirectly by some other code. 
+        // here rather than just testing the output we can create a mock function with jest.fn().
+        //use Mock jest.fn(), the behavior of a function that is called indirectly by some other code.
         const mockCallBack = jest.fn();
         const button = shallow((<ExampleButton onClick={mockCallBack}>Ok!</ExampleButton>));
         button.find('button').simulate('click');
@@ -171,22 +182,67 @@ describe('TestCase#4 : Test Button click event', () => {
     it('TestCase#4 -3 : Should call start userFlavour on button click', () => {
         const userFlavour = jest.fn(() => { console.log(true) });
         const wrapper = shallow(<ExampleButton onClick={userFlavour} />);
-        wrapper.find('button').at(0).simulate('click'); // at- current node of index 
+        wrapper.find('button').at(0).simulate('click'); // at- current node of index
         drinkAll(userFlavour, 'lemon');
         expect(userFlavour).toHaveBeenCalled(); //to ensure that a mock function got called.
-        console.log(userFlavour()); 
+        console.log(userFlavour());
         drinkAll(userFlavour, 'orange');
-       // expect(userFlavour).not.toHaveBeenCalled();
+        //  expect(userFlavour).not.toHaveBeenCalled();
     });
 
 });
 
 describe('TestCase#5 : Get Data from API', () => {
-it("shows a list of users from API", async () => {
-    const component = create(<Users />);
-    const instance = component.getInstance();
-    await instance.componentDidMount();
-    console.log(instance.state);
+    it("shows a list of users from API", async () => {
+        const component = create(<Users />);
+        const instance = component.getInstance();
+        await instance.componentDidMount();
+        // console.log(instance.state);
+    });
 });
-});
+/** @{Defination} The toHaveStyleRule matcher is useful to test if a given rule is applied to a component.
+ * @{args} The first argument is the expected property, the second is the expected value which can be a String, RegExp, Jest asymmetric matcher or undefined.
+ * When used with a negated ".not" modifier the second argument is optional and can be omitted.
+ * Ref : https://github.com/styled-components/jest-styled-components#tohavestylerule
+ * */
+describe('TestCase#6 : toHaveStyleRule ', () => {
+    const ExampleButton = styled.button`
+width: 50%;
+height: 30%;
+border: 2px solid rgb(20, 233, 162);
+color: rgb(18,105,206);
+font-size: 24px;
+position: relative;
+border: 0.05em solid ${props => props.transparent ? 'transparent' : 'black'};
+cursor: ${props => !props.disabled && 'pointer'};
+opacity: ${props => props.disabled && '.65'};
+`
+    it("Jest Styled Components works with shallow rendering", () => {
+        const wrapper = shallow(<ExampleButton />);
+        expect(wrapper.getElements()).toMatchSnapshot();
+    });
+    it('it applies default styles', () => {
 
+        const tree = renderer.create(<ExampleButton />).toJSON()
+        expect(tree).toMatchSnapshot();
+        expect(tree).toHaveStyleRule('color', 'rgb(18,105,206)');
+        expect(tree).toHaveStyleRule('border', '0.05em solid black');
+        expect(tree).toHaveStyleRule('font-size', '24px');
+        expect(tree).toHaveStyleRule('cursor', 'pointer');
+        expect(tree).not.toHaveStyleRule('opacity'); // equivalent of the following two
+        expect(tree).not.toHaveStyleRule('opacity', expect.any(String));
+        expect(tree).toHaveStyleRule('opacity', undefined);
+    });
+
+    it('it applies styles according to passed props', () => {
+        const tree = renderer.create(<ExampleButton disabled transparent />).toJSON();
+        expect(tree).toHaveStyleRule('border', expect.stringContaining('transparent'));
+        expect(tree).toHaveStyleRule('cursor', undefined);
+        expect(tree).toHaveStyleRule('opacity', '.65');
+    });
+    // it('getDOMNode css ', () => {
+    // const wrapper = shallow(<ExampleButton />);
+    // const elem = wrapper.find(Element);
+    // expect(getComputedStyle(elem.getDOMNode()).getPropertyValue('opacity')).toBe('0.4');
+    // })
+});
