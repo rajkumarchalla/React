@@ -18,7 +18,7 @@ context('UserData', () => {
       // preventing race conditions where you wait on untouched routes
     })
 
-    it('can inspect real data in XHR', () => {
+    it('can inspect real data ', () => {
       cy.route('/users?_limit=3').as('users')
       cy.mount(<UserData />)
       cy.wait('@users')
@@ -26,7 +26,7 @@ context('UserData', () => {
         .should('have.length', 3)
     })
 
-    it('can display mock XHR response', () => {
+    it('can display mock response', () => {
       const users = [{ id: 1, name: 'foo' }]
       cy.route('GET', '/users?_limit=3', users).as('users')
       cy.mount(<UserData />)
@@ -36,7 +36,7 @@ context('UserData', () => {
         .contains('foo')
     })
 
-    it('can inspect mocked XHR', () => {
+    it('can inspect', () => {
       const users = [{ id: 1, name: 'foo' }]
       cy.route('GET', '/users?_limit=3', users).as('users')
       cy.mount(<UserData />)
@@ -45,7 +45,7 @@ context('UserData', () => {
         .should('deep.equal', users)
     })
 
-    it('can delay and wait on XHR', () => {
+    it('can delay and wait ', () => {
       const users = [{ id: 1, name: 'foo' }]
       cy.route({
         method: 'GET',

@@ -93,7 +93,7 @@ class App extends Component {
             </div>
    */
   render() {
-    const { isLoading } = this.state;
+    //const { isLoading } = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -106,6 +106,11 @@ class App extends Component {
               </Wrapper>
             </div>
             <br />
+            <div><form action="/login">
+              <input id="username" />
+              <input id="password" />
+              <button type="submit">Log In</button>
+            </form> </div>
 
             <br />
           </div>
